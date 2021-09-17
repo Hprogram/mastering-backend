@@ -13,19 +13,23 @@ const upload = multer({
 
 router.post("/", (req, res) => {
   upload(req, res, (err) => {
-    // //console.log(req);
-    // //if (err) console.log(err);
-    // console.log(req.file);
-    // //console.log("file load completed!! need to convert audio file");
-    // //Need to Convert Audio file in below
-    // //req.file.filename="fixedFile.wav";
-    // res.writeHead(200, { "Content-Type": "audio/wav" });
+    //console.log(req);
+    //if (err) console.log(err);
+
+    //console.log(req.file);
+    //console.log("file load completed!! need to convert audio file");
+
+    //Need to Convert Audio file in below
+    //req.file.filename="fixedFile.wav";
+
+    //res.writeHead(200, {"Content-Type":"audio/wav"});
+
     var zerorpc = require("zerorpc");
     var client = new zerorpc.Client({
       timeout: 600,
       heartbeatInterval: 120000,
     });
-    client.connect("tcp://localhost:8080");
+    client.connect("tcp://192.168.0.100:4242");
     console.log("start invoke");
     client.invoke(
       "getMasteredAudio",
@@ -44,9 +48,9 @@ router.post("/", (req, res) => {
         console.log("finished");
       }
     );
-    // var fs = require("fs");
-    // fs.readFile("./routes/sample_test_eq.wav", function (err, data) {
-    //   console.log();
+    // var fs = require('fs');
+    // fs.readFile('./routes/sample_test_eq.wav', function(err,data){
+    //   console.log()
     //   res.write(new Buffer(data).toString("base64"));
     //   res.end();
     //   console.log("send response!");
