@@ -29,7 +29,7 @@ router.post("/", (req, res) => {
       timeout: 600,
       heartbeatInterval: 120000,
     });
-    client.connect("tcp://192.168.0.100:4242");
+    client.connect("tcp://192.168.0.100:4242"); // 해당 주소를 파이썬 서버로 직접연결
     console.log("start invoke");
     client.invoke(
       "getMasteredAudio",
