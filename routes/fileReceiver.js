@@ -29,9 +29,13 @@ router.post("/", (req, res) => {
       timeout: 600,
       heartbeatInterval: 120000,
     });
+    // api로 바꾸기 위해서는 파이썬 서버 코드를 수정해야함.
     client.connect("tcp://192.168.0.100:4242"); // 해당 주소를 파이썬 서버로 직접연결
+    
     console.log("start invoke");
-    client.invoke(
+    client.invoke( 
+      // 현재 버퍼에 올라가 있는 데이터와 파일의 오리지널 네임을 전송. 
+      // 오류가 없다면 반환값을 버퍼에 base64형태로 입력후 반환.
       "getMasteredAudio",
       req.file.buffer,
       req.file.originalname,
