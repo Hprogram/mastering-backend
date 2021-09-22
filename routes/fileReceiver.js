@@ -7,6 +7,7 @@ router.get("/", function (req, res, next) {
   res.send("test");
 });
 
+// multer를 이용해 메모리 저장공간 (버퍼)를 업로드 시킴.
 const upload = multer({
   storage: multer.memoryStorage(),
 }).single("file");
