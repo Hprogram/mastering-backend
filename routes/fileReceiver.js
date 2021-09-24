@@ -13,14 +13,39 @@ const upload = multer({
   storage: multer.memoryStorage(),
 }).single("file");
 
-router.post("/", (req, res) => {
-  upload(req, res, (err) => {
-    let buf = new Buffer(req.file.buffer).toString("base64");
-    console.log(buf);
-    res.send(buf);
+router.post("/web", (req, res) => {
+  let buffer = req.data.bytes;
+  let originalname = req.data.originalname;
+  var zerorpc = require("zerorpc");
+  var client = new zerorpc.Client({
+    timeout: 600,
+    heartbeatInterval: 120000,
   });
+  // api로 바꾸기 위해서는 파이썬 서버 코드를 수정해야함.
+  client.connect("tcp://192.168.0.100:4242"); // 해당 주소를 파이썬 서버로 직접연결
+
+  console.log("start invoke");
+  client.invoke(
+    // 현재 버퍼에 올라가 있는 데이터와 파일의 오리지널 네임을 전송.
+    // 오류가 없다면 반환값을 버퍼에 base64형태로 입력후 반환.
+    "getMasteredAudio",
+    buffer,
+    originalname,
+    function (error, resFromPython, more) {
+      if (error != null) {
+        console.log(error);
+        res.status(500).send();
+        res.end();
+        return;
+      }
+      console.log(resFromPython);
+      res.write(new Buffer(resFromPython).toString("base64"));
+      res.end();
+      console.log("finished");
+    }
+  );
 });
-/*
+
 router.post("/", (req, res) => {
   upload(req, res, (err) => {
     //console.log(req);
@@ -71,10 +96,7 @@ router.post("/", (req, res) => {
     // });
   });
 });
- 
 
-module.exports = router;
-*/
 /*
 router.post("/", (req, res) => {
   upload(req, res, (err) => {
