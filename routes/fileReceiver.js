@@ -47,6 +47,10 @@ const upload = multer({
   storage: multer.memoryStorage(),
 }).single("file");
 
+// https 서버에서 오는 req 요청 제대로 수행하지 못함 이부분 해결해야함.
+//  그러기 위해서는 서버를 두개의 포트로 열어야할듯.
+// http, https 모두 열어서 python은 http로 tcp통신.
+//  클라이언트와는 https로 통신. (openssl로는 해결 할 수 없음. ca가 필요함)
 router.post("/", (req, res) => {
   upload(req, res, (err) => {
     var zerorpc = require("zerorpc");
