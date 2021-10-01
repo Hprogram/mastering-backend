@@ -35,6 +35,8 @@ router.post("/", (req, res) => {
     client.invoke(
       // 현재 버퍼에 올라가 있는 데이터와 파일의 오리지널 네임을 전송.
       // 오류가 없다면 반환값을 버퍼에 base64형태로 입력후 반환.
+      // flutter 웹에서 데이터 읽어오지 못하는 부분 ‘key error 발생’
+      // 클라이언트에서 req에서 해당 파일의 original name을 찾을 수 없던 문제 해결.
       "getMasteredAudio",
       req.file.buffer,
       req.file.originalname,
