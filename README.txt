@@ -2,3 +2,5 @@
 zerorpc node 14.6.1에서 설치 불가.
 14.17.6 > 10.24.1로 다운그레이드 후 테스트.
 zerorpc 대체 프로그램 서치 중.(tcp방식)
+zerorpc 유지
+flutter 웹앱과 통신하는 API 구현 및 테스트 완료.
