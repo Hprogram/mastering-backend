@@ -38,7 +38,7 @@ router.post("/", (req, res) => {
       // flutter 웹에서 데이터 읽어오지 못하는 부분 ‘key error 발생’
       // 클라이언트에서 req에서 해당 파일의 original name을 찾을 수 없던 문제 해결.
       "getMasteredAudio",
-      req.file.buffer,
+      req.file.buffer, // multer로 가져온 파일을 버퍼에 올린 상태. 해당 버퍼에 바이트 형태로 보내진 음원 데이터가 있음.
       req.file.originalname,
       function (error, resFromPython, more) {
         if (error != null) {
