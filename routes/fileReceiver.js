@@ -3,6 +3,7 @@ var router = express.Router();
 var multer = require("multer");
 var fs = require("fs");
 
+// https로 클라이언트가 배포될경우 서버도 https로 전환해야할 가능성 있음.
 router.get("/", function (req, res, next) {
   res.send("test");
 });
