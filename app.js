@@ -30,7 +30,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/api/upload", fileReceiver); // 현재 이 부분에서 에러 서버 500번 에러 서버 콘솔 확인 필요.
+app.use("/api/upload", fileReceiver); // 현재 이 부분에서 에러 서버 500번 에러 서버 콘솔 확인 필요.(해결)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
