@@ -4,3 +4,6 @@ zerorpc node 14.6.1에서 설치 불가.
 zerorpc 대체 프로그램 서치 중.(tcp방식)
 zerorpc 유지
 flutter 웹앱과 통신하는 API 구현 및 테스트 완료.
+
+테스트 배포에서 문제 발생하지 않음.
+AWS로 배포예정
