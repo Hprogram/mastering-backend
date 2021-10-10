@@ -21,7 +21,7 @@ router.post("/", (req, res) => {
   upload(req, res, (err) => {
     let buffers = req.file.buffer.toString("base64");
 
-    console.log(buffers);
+    //console.log(buffers);
 
     var zerorpc = require("zerorpc");
     var client = new zerorpc.Client({
@@ -48,7 +48,7 @@ router.post("/", (req, res) => {
           res.end();
           return;
         }
-        console.log(resFromPython);
+        //console.log(resFromPython);
         res.write(new Buffer(resFromPython).toString("base64"));
         res.end();
         console.log("finished");
