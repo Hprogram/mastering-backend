@@ -7,6 +7,19 @@
 var app = require("../app");
 var debug = require("debug")("backend:server");
 var http = require("http");
+var https = require("https");
+const fs = require("fs");
+
+const privateKey = fs.readFileSync(
+  "/etc/letsencrypt/live/stellasound.site/privkey.pem"
+);
+const cert = fs.readFileSync("/etc/letsencrypt/live/stellasound.site/cert.pem");
+const ca = fs.readFileSync("/etc/letsencrypt/live/stellasound.site/chain.pem");
+const options = {
+  key: privateKey,
+  cert: cert,
+  ca: ca,
+};
 // 배포중에 https 로 인한 mix content 에러가 발생하면 https로 서버를 열어야함.
 // ssl 발급 완료
 
@@ -21,13 +34,14 @@ app.set("port", port);
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+// var server = http.createServer(app);
+const server = https.createServer(options, app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port, "127.0.0.1");
+server.listen(port);
 
 server.on("error", onError);
 server.on("listening", onListening);
