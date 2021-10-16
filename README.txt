@@ -12,4 +12,6 @@ AWS로 배포예정.
 
 https 사용을 위해 ssl 발급 절차 진행. (완료) letsencrypt 이용 ssl발급 및 greenlook-express로 자동 갱신 진행.
 
-클라이언트 디자인 작업 완료. (버킷 재 배포)
+클라이언트 디자인 작업 완료. (버킷 재 배포) 
+
+cloudfront 로 클라이언트 https로 배포할 예정.
