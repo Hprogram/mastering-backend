@@ -49,6 +49,7 @@ router.post("/", (req, res) => {
           return;
         }
         //console.log(resFromPython);
+        //버퍼에 해당 정보를 base64형태로 변환해서 입력.
         res.write(new Buffer(resFromPython).toString("base64"));
         res.end();
         console.log("finished");
